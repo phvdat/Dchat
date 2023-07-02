@@ -3,6 +3,7 @@ import Button from "components/baseUI/button/Button";
 import ErrorMessage from "components/baseUI/errorMessage/ErrorMessage";
 import Icon from "components/baseUI/icon";
 import Input from "components/baseUI/input/Input";
+import PasswordInput from "components/baseUI/input/PasswordInput";
 import { RoutePath } from "constants/routes";
 import { useMemo } from "react";
 import { useForm } from "react-hook-form";
@@ -90,7 +91,7 @@ const RegisterPage = () => {
           <label htmlFor="password" className="mb-2">
             {t("login.password")}
           </label>
-          <Input
+          <PasswordInput
             prefixIcon={<Icon icon="lock-solid" size={16} />}
             isError={!!errors.password}
             type="password"
@@ -103,7 +104,7 @@ const RegisterPage = () => {
           <label htmlFor="confirmPassword" className="mb-2">
             {t("login.confirmPassword")}
           </label>
-          <Input
+          <PasswordInput
             prefixIcon={<Icon icon="lock-solid" size={16} />}
             isError={!!errors.confirmPassword}
             type="password"

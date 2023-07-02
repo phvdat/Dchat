@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
+import Icon from "../icon";
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   prefixIcon?: React.ReactNode;
-  suffixIcon?: React.ReactNode;
   isError?: boolean;
   refRegister?: UseFormRegisterReturn;
 }
 const Input = (props: InputProps) => {
-  const { prefixIcon, suffixIcon, isError, refRegister, ...rest } = props;
+  const { prefixIcon, isError, refRegister, ...rest } = props;
+
   return (
     <div
       className={
@@ -16,7 +18,7 @@ const Input = (props: InputProps) => {
         (isError ? " border-error" : "")
       }
     >
-      {prefixIcon && <div className="px-3 h-max">{prefixIcon}</div>}
+      {prefixIcon && <div className="py-2 px-3  h-max">{prefixIcon}</div>}
       <input
         {...rest}
         {...refRegister}
@@ -25,7 +27,6 @@ const Input = (props: InputProps) => {
           +(!prefixIcon ? " rounded-l-md" : "")
         }
       />
-      {suffixIcon && <div className="ml-2">{suffixIcon}</div>}
     </div>
   );
 };
