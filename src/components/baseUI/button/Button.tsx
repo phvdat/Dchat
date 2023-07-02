@@ -2,10 +2,11 @@ import React from "react";
 
 interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   fullWidth?: boolean;
+  children?: React.ReactNode;
 }
 
 const Button = (props: IButtonProps) => {
-  const { fullWidth = false, ...rest } = props;
+  const { fullWidth = false, children, ...rest } = props;
 
   return (
     <button
@@ -15,7 +16,7 @@ const Button = (props: IButtonProps) => {
         (fullWidth ? " w-full" : "")
       }
     >
-      Button
+      {children || "Button"}
     </button>
   );
 };

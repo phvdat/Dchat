@@ -1,12 +1,16 @@
 {
   "login": {
-    "title": "Sign in",
-    "description": "Sign in to continue to ChatPVD.",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "description": "Sign in to continue to ChatD.",
+    "descriptionSignUp": "Get your ChatD account now.",
     "userName": "Username",
 		"email": "Email",
     "password": "Password",
+		"confirmPassword": "Confirm password",
 		"rememberMe": "Remember me",
-		"dontHaveAccount": "Don't have an account? <a>Sign up now</a>"
+		"dontHaveAccount": "Don't have an account? <a>Sign up now</a>",
+		"haveAccount": "Already have an account? <a>Sign in</a>"
   },
 	"validation":{
 		"required": "This field is required",

@@ -10,22 +10,30 @@ import { Trans, useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 
-interface ILoginFormValues {
+interface IRegisterFormValues {
   email: string;
+  userName: string;
   password: string;
-  remember: boolean;
+  confirmPassword: string;
 }
-const LoginPage = () => {
+const RegisterPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const schema = useMemo(() => {
-    return yup.object<ILoginFormValues>().shape({
+    return yup.object<IRegisterFormValues>().shape({
       email: yup
         .string()
         .email(t("validation.email"))
         .required(t("validation.required")),
-      password: yup.string().required(t("validation.required")),
-      remember: yup.boolean().required(),
+      userName: yup.string().required(t("validation.required")),
+      password: yup
+        .string()
+        .required(t("validation.required"))
+        .min(6, t("validation.password", { min: 6 })),
+      confirmPassword: yup
+        .string()
+        .required(t("validation.required"))
+        .oneOf([yup.ref("password")], t("validation.confirmPassword")),
     });
   }, []);
 
@@ -33,20 +41,20 @@ const LoginPage = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ILoginFormValues>({
+  } = useForm<IRegisterFormValues>({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = async (data: ILoginFormValues) => {
-    navigate(RoutePath.Home);
+  const onSubmit = async (data: IRegisterFormValues) => {
+    navigate(RoutePath.Login);
     // call api
   };
 
   return (
     <div className="flex flex-col justify-center items-center h-screen text-center">
-      <h1 className="text-base mb-3">{t("login.signIn")}</h1>
+      <h1 className="text-base mb-3">{t("login.signUp")}</h1>
       <span className="text-secondary-light dark:text-secondary-dark mb-7">
-        {t("login.description")}
+        {t("login.descriptionSignUp")}
       </span>
       <form
         className="w-full max-w-md bg-secondary-light dark:bg-secondary-dark px-8 py-10  rounded-md shadow-md text-left"
@@ -66,6 +74,19 @@ const LoginPage = () => {
           <ErrorMessage message={errors.email?.message} />
         </div>
         <div className="flex flex-col align-top mb-4">
+          <label htmlFor="userName" className="mb-2">
+            {t("login.userName")}
+          </label>
+          <Input
+            prefixIcon={<Icon icon="user-solid" size={16} />}
+            isError={!!errors.userName}
+            type="text"
+            id="userName"
+            refRegister={register("userName")}
+          />
+          <ErrorMessage message={errors.userName?.message} />
+        </div>
+        <div className="flex flex-col align-top mb-4">
           <label htmlFor="password" className="mb-2">
             {t("login.password")}
           </label>
@@ -78,23 +99,32 @@ const LoginPage = () => {
           />
           <ErrorMessage message={errors.password?.message} />
         </div>
-        <div className="flex justify-start mb-4">
-          <input type="checkbox" id="remember" {...register("remember")} />
-          <label htmlFor="remember" className="ml-2">
-            {t("login.rememberMe")}
+        <div className="flex flex-col align-top mb-4">
+          <label htmlFor="confirmPassword" className="mb-2">
+            {t("login.confirmPassword")}
           </label>
+          <Input
+            prefixIcon={<Icon icon="lock-solid" size={16} />}
+            isError={!!errors.confirmPassword}
+            type="password"
+            id="confirmPassword"
+            refRegister={register("confirmPassword")}
+          />
+          <ErrorMessage message={errors.confirmPassword?.message} />
         </div>
-        <Button type="submit" fullWidth>
-          {t("login.signIn")}
-        </Button>
+        <div className="mt-5">
+          <Button type="submit" fullWidth>
+            {t("login.signUp")}
+          </Button>
+        </div>
       </form>
       <p className="mt-7">
         <Trans
-          i18nKey={"login.dontHaveAccount"}
+          i18nKey={"login.haveAccount"}
           components={{
             a: (
               <a
-                href={RoutePath.Register}
+                href={RoutePath.Login}
                 className="text-primary hover:underline"
               />
             ),
@@ -105,4 +135,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
