@@ -1,0 +1,15 @@
+{
+  "login": {
+    "title": "Đăng nhập",
+    "description": "Đăng nhập để sử dụng ChatPVD.",
+    "userName": "Tên đăng nhập",
+		"email": "Email",
+    "password": "Mật khẩu"
+  },
+	"validation":{
+		"required": "Trường này là bắt buộc",
+		"email": "Vui lòng nhập đúng định dạng email",
+		"password": "Mật khẩu phải có ít nhất {{6}} ký tự",
+		"confirmPassword": "Mật khẩu không khớp"
+	}
+}

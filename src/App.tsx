@@ -1,10 +1,10 @@
-import './App.css';
-import Chat from './Chat';
+import "./App.css";
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
-    <div className='App'>
-      <Chat />
+    <div className="App">
+      <Outlet />
     </div>
   );
 }
