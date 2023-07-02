@@ -5,7 +5,8 @@
     "userName": "Username",
 		"email": "Email",
     "password": "Password",
-		"rememberMe": "Remember me"
+		"rememberMe": "Remember me",
+		"dontHaveAccount": "Don't have an account? <a>Sign up now</a>"
   },
 	"validation":{
 		"required": "This field is required",

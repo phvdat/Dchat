@@ -31,6 +31,7 @@ export const theme = {
     "input-light": "#e6ebf5",
   },
   colors: {
+    primary: "#f5cf55",
     "primary-light": "#343a40",
     "primary-dark": "#eff2f7",
     "secondary-light": "#7a7f9a",

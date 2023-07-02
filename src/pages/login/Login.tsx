@@ -6,7 +6,7 @@ import Input from "components/baseUI/input/Input";
 import { RoutePath } from "constants/routes";
 import { useMemo } from "react";
 import { useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 
@@ -45,15 +45,15 @@ const LoginPage = () => {
   return (
     <div className="flex flex-col justify-center items-center h-screen text-center">
       <h1 className="text-base mb-3">{t("login.title")}</h1>
-      <span className="text-secondary-light dark:text-secondary-dark mb-3">
+      <span className="text-secondary-light dark:text-secondary-dark mb-7">
         {t("login.description")}
       </span>
       <form
-        className="w-full max-w-md bg-secondary-light dark:bg-secondary-dark p-8  rounded-md shadow-md text-left"
+        className="w-full max-w-md bg-secondary-light dark:bg-secondary-dark px-8 py-10  rounded-md shadow-md text-left"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className="flex flex-col align-top mb-3">
-          <label htmlFor="email" className="mb-1">
+        <div className="flex flex-col align-top mb-4">
+          <label htmlFor="email" className="mb-2">
             {t("login.email")}
           </label>
           <Input
@@ -65,8 +65,8 @@ const LoginPage = () => {
           />
           <ErrorMessage message={errors.email?.message} />
         </div>
-        <div className="flex flex-col align-top mb-3">
-          <label htmlFor="password" className="mb-1">
+        <div className="flex flex-col align-top mb-4">
+          <label htmlFor="password" className="mb-2">
             {t("login.password")}
           </label>
           <Input
@@ -78,7 +78,7 @@ const LoginPage = () => {
           />
           <ErrorMessage message={errors.password?.message} />
         </div>
-        <div className="flex justify-start mb-3">
+        <div className="flex justify-start mb-4">
           <input type="checkbox" id="remember" {...register("remember")} />
           <label htmlFor="remember" className="ml-2">
             {t("login.rememberMe")}
@@ -88,6 +88,19 @@ const LoginPage = () => {
           {t("login.title")}
         </Button>
       </form>
+      <p className="mt-7">
+        <Trans
+          i18nKey={"login.dontHaveAccount"}
+          components={{
+            a: (
+              <a
+                href={RoutePath.Register}
+                className="text-primary hover:underline"
+              />
+            ),
+          }}
+        />
+      </p>
     </div>
   );
 };

@@ -4,7 +4,8 @@
     "description": "Đăng nhập để sử dụng ChatPVD.",
     "userName": "Tên đăng nhập",
 		"email": "Email",
-    "password": "Mật khẩu"
+    "password": "Mật khẩu",
+		"dontHaveAccount": "Bạn chưa có tài khoản?"
   },
 	"validation":{
 		"required": "Trường này là bắt buộc",
