@@ -1,11 +1,11 @@
-import Sidebar from "components/sidebar/Sidebar";
-import { Outlet } from "react-router-dom";
+import Sidebar from 'components/sidebar/Sidebar';
+import { Outlet } from 'react-router-dom';
 
 const DefaultLayout = () => {
   return (
-    <div className="flex">
+    <div className='flex'>
       <Sidebar />
-      <div className="min-h-screen w-full">
+      <div className='min-h-screen w-full'>
         <Outlet />
       </div>
     </div>
