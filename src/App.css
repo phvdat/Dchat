@@ -1,12 +1,9 @@
-*{
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;	
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  @apply text-primary-light dark:text-primary-dark;
 }
 body {
-	@apply bg-primary-light dark:bg-primary-dark
-}
-
-h1, h2, h3, h4, h5, h6, p, span, a, b, i, label, svg {
-	@apply text-primary-light dark:text-primary-dark
+  @apply bg-primary-light dark:bg-primary-dark;
 }
