@@ -5,18 +5,20 @@ type Place = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 type item = {
   elementOption: React.ReactNode;
   horizontal?: boolean;
-  place?: Place;
 };
 interface IDropdownProps {
-  list: item[];
-  elementAction: React.ReactNode;
+  dropdownContent: item[];
+  dropdown: React.ReactNode;
+  place?: Place;
 }
 
 const Dropdown = (props: IDropdownProps) => {
-  const { elementAction, list } = props;
+  const { dropdown, dropdownContent, place = 'bottom-right' } = props;
+
   const [showDropdown, setShowDropdown] = useState(false);
   const refDropdownContent = useRef<HTMLUListElement>(null);
   const refDropdown = useRef<HTMLDivElement>(null);
+
   const handleClickOutside = (event: any) => {
     if (
       refDropdownContent.current &&
@@ -29,36 +31,77 @@ const Dropdown = (props: IDropdownProps) => {
   };
 
   useEffect(() => {
+    const dropdown = refDropdown.current;
+
+    switch (place) {
+      case 'bottom-left':
+        if (refDropdownContent.current) {
+          refDropdownContent.current.style.top = dropdown?.offsetHeight + 'px';
+          refDropdownContent.current.style.right = '0';
+        }
+        break;
+      case 'bottom-right':
+        if (refDropdownContent.current) {
+          refDropdownContent.current.style.top = dropdown?.offsetHeight + 'px';
+          refDropdownContent.current.style.left = '0';
+        }
+        break;
+
+      case 'top-left':
+        if (refDropdownContent.current) {
+          refDropdownContent.current.style.top =
+            '-' + dropdown?.offsetHeight + 'px';
+          refDropdownContent.current.style.right = '0';
+        }
+        break;
+
+      case 'top-right':
+        if (refDropdownContent.current) {
+          refDropdownContent.current.style.top =
+            '-' + dropdown?.offsetHeight + 'px';
+          refDropdownContent.current.style.left = '0';
+        }
+        break;
+
+      default:
+        break;
+    }
+  }, [place]);
+
+  useEffect(() => {
     document.addEventListener('click', handleClickOutside);
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
   });
   return (
-    <div className='py-2 relative'>
-      <div
-        onClick={() => setShowDropdown(!showDropdown)}
-        className='cursor-pointer'
-        ref={refDropdown}
-      >
-        {elementAction}
-      </div>
+    <div className='relative'>
       <ul
         ref={refDropdownContent}
-        className='dropdown-content shadow-md rounded-md bg-secondary-light dark:bg-secondary-dark right-0 py-2'
+        className='dropdown-content shadow-md rounded-md bg-secondary-light dark:bg-secondary-dark py-2'
         aria-expanded={showDropdown}
       >
-        {list.map((item, index) => (
+        {dropdownContent.map((item, index) => (
           <li
             key={index}
             className={
-              'p-2 cursor-pointer hover:bg-tertiary-light dark:hover:bg-tertiary-dark'
+              'py-2 px-3 cursor-pointer hover:bg-tertiary-light dark:hover:bg-tertiary-dark' +
+              (item.horizontal
+                ? ' border-b border-secondary-light dark:bg-secondary-dark'
+                : '')
             }
           >
             {item.elementOption}
           </li>
         ))}
       </ul>
+      <div
+        onClick={() => setShowDropdown(!showDropdown)}
+        className='cursor-pointer'
+        ref={refDropdown}
+      >
+        {dropdown}
+      </div>
     </div>
   );
 };
