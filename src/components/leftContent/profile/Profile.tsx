@@ -8,7 +8,7 @@ const Profile = () => {
         <h1 className='text-tiny tex font-medium'>Profile</h1>
         <Dropdown
           elementAction={<Icon icon='three-dot' />}
-          list={[{ elementOption: 'Edit' }]}
+          list={[{ elementOption: 'Edit' }, { elementOption: 'Setting' }]}
         />
       </div>
     </div>

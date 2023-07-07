@@ -25,7 +25,7 @@ export const theme = {
     'primary-dark': '#303841',
     'secondary-light': '#ffffff',
     'secondary-dark': '#262e35',
-    'tertiary-light': '#ffffff',
+    'tertiary-light': '#f8f9fa',
     'tertiary-dark': '#36404a',
     'input-dark': '#36404a',
     'input-light': '#e6ebf5'

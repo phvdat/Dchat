@@ -8,11 +8,11 @@ const useThemeMode = () => {
 
   useEffect(() => {
     if (theme === 'light') {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('color-theme', 'dark');
-    } else {
       document.documentElement.classList.remove('dark');
       localStorage.setItem('color-theme', 'light');
+    } else {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('color-theme', 'dark');
     }
   }, [theme]);
 

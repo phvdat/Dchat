@@ -29,8 +29,6 @@ const Dropdown = (props: IDropdownProps) => {
   };
 
   useEffect(() => {
-    console.log('item.horizontal', list[0].horizontal);
-
     document.addEventListener('click', handleClickOutside);
     return () => {
       document.removeEventListener('click', handleClickOutside);
@@ -39,7 +37,7 @@ const Dropdown = (props: IDropdownProps) => {
   return (
     <div className='py-2 relative'>
       <div
-        onClick={() => setShowDropdown(true)}
+        onClick={() => setShowDropdown(!showDropdown)}
         className='cursor-pointer'
         ref={refDropdown}
       >
@@ -47,14 +45,14 @@ const Dropdown = (props: IDropdownProps) => {
       </div>
       <ul
         ref={refDropdownContent}
-        className='dropdown-content shadow-md rounded-md bg-secondary-light dark:bg-secondary-dark right-0'
+        className='dropdown-content shadow-md rounded-md bg-secondary-light dark:bg-secondary-dark right-0 py-2'
         aria-expanded={showDropdown}
       >
         {list.map((item, index) => (
           <li
             key={index}
             className={
-              'p-7' + item.horizontal ? ' border-b border-gray-200' : ''
+              'p-2 cursor-pointer hover:bg-tertiary-light dark:hover:bg-tertiary-dark'
             }
           >
             {item.elementOption}
