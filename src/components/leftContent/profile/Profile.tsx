@@ -8,11 +8,8 @@ const Profile = () => {
         <h1 className='text-tiny tex font-medium'>Profile</h1>
         <Dropdown
           dropdown={<Icon icon='three-dot' />}
-          dropdownContent={[
-            { elementOption: 'Edit', horizontal: true },
-            { elementOption: 'Setting' }
-          ]}
-          place='top-left'
+          dropdownContent={[{ elementOption: 'Edit' }]}
+          place='bottom-left'
         />
       </div>
     </div>

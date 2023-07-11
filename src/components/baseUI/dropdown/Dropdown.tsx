@@ -32,41 +32,42 @@ const Dropdown = (props: IDropdownProps) => {
 
   useEffect(() => {
     const dropdown = refDropdown.current;
+    const dropdownContent = refDropdownContent.current;
 
     switch (place) {
       case 'bottom-left':
-        if (refDropdownContent.current) {
-          refDropdownContent.current.style.top = dropdown?.offsetHeight + 'px';
-          refDropdownContent.current.style.right = '0';
+        if (dropdownContent) {
+          dropdownContent.style.top = dropdown?.offsetHeight + 'px';
+          dropdownContent.style.right = '0';
         }
         break;
       case 'bottom-right':
-        if (refDropdownContent.current) {
-          refDropdownContent.current.style.top = dropdown?.offsetHeight + 'px';
-          refDropdownContent.current.style.left = '0';
+        if (dropdownContent) {
+          dropdownContent.style.top = dropdown?.offsetHeight + 'px';
+          dropdownContent.style.left = '0';
         }
         break;
 
       case 'top-left':
-        if (refDropdownContent.current) {
-          refDropdownContent.current.style.top =
-            '-' + dropdown?.offsetHeight + 'px';
-          refDropdownContent.current.style.right = '0';
+        if (dropdownContent) {
+          dropdownContent.style.top =
+            '-' + dropdownContent?.offsetHeight + 'px';
+          dropdownContent.style.right = '0';
         }
         break;
 
       case 'top-right':
-        if (refDropdownContent.current) {
-          refDropdownContent.current.style.top =
-            '-' + dropdown?.offsetHeight + 'px';
-          refDropdownContent.current.style.left = '0';
+        if (dropdownContent) {
+          dropdownContent.style.top =
+            '-' + dropdownContent?.offsetHeight + 'px';
+          dropdownContent.style.left = '0';
         }
         break;
 
       default:
         break;
     }
-  }, [place]);
+  }, [place, showDropdown]);
 
   useEffect(() => {
     document.addEventListener('click', handleClickOutside);
@@ -97,7 +98,7 @@ const Dropdown = (props: IDropdownProps) => {
       </ul>
       <div
         onClick={() => setShowDropdown(!showDropdown)}
-        className='cursor-pointer'
+        className='cursor-pointer select-none'
         ref={refDropdown}
       >
         {dropdown}
