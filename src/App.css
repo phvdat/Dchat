@@ -2,8 +2,9 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  @apply text-primary-light dark:text-primary-dark;
+  @apply text-text-primary-light dark:text-text-primary-dark;
 }
+
 body {
   @apply bg-primary-light dark:bg-primary-dark;
 }

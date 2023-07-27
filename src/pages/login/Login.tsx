@@ -46,9 +46,7 @@ const LoginPage = () => {
   return (
     <div className='flex flex-col justify-center items-center h-screen text-center'>
       <h1 className='text-base mb-3'>{t('login.signIn')}</h1>
-      <span className='text-secondary-light dark:text-secondary-dark mb-7'>
-        {t('login.description')}
-      </span>
+      <span className='mb-7'>{t('login.description')}</span>
       <form
         className='w-full max-w-md bg-secondary-light dark:bg-secondary-dark px-8 py-10  rounded-md shadow-md text-left'
         onSubmit={handleSubmit(onSubmit)}

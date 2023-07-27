@@ -3,5 +3,8 @@ export const RoutePath = {
   Home: '/home',
   Login: '/login',
   Register: '/register',
-  ForgotPassword: '/forgot-password'
+  ForgotPassword: '/forgot-password',
+
+  Profile: '/profile',
+  Chat: '/chat'
 };

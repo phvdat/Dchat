@@ -1,5 +1,7 @@
 import App from 'App';
 import DefaultLayout from 'components/layout/DefaultLayout';
+import Chats from 'components/leftContent/chats/Chats';
+import Profile from 'components/leftContent/profile/Profile';
 import { RoutePath } from 'constants/routes';
 import HomePage from 'pages/home/Home';
 import LoginPage from 'pages/login/Login';
@@ -24,12 +26,22 @@ const routesConfig: RouteObject[] = [
         element: <DefaultLayout />,
         children: [
           {
-            index: true,
-            element: <Navigate to={RoutePath.Home} />
-          },
-          {
-            path: RoutePath.Home,
-            element: <HomePage />
+            element: <HomePage />,
+            children: [
+              {
+                index: true,
+                element: <Navigate to={RoutePath.Chat} />
+              },
+              {
+                path: RoutePath.Profile,
+                element: <Profile />
+              },
+
+              {
+                path: RoutePath.Chat,
+                element: <Chats />
+              }
+            ]
           }
         ]
       }

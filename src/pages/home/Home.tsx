@@ -1,13 +1,14 @@
-import Profile from 'components/leftContent/profile/Profile';
+import Messager from 'components/messager/Messager';
+import { Outlet } from 'react-router-dom';
 
 const HomePage = () => {
   return (
     <div className='flex'>
-      <div className='w-96 p-8'>
-        <Profile />
+      <div className='w-[380px] py-8'>
+        <Outlet />
       </div>
-      <div className='w-full bg-secondary-light dark:bg-secondary-dark'>
-        main content
+      <div className='flex-grow bg-secondary-light dark:bg-secondary-dark h-screen'>
+        <Messager />
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ const Sidebar = () => {
   const { theme, setTheme } = useThemeMode();
 
   return (
-    <div className='w-fit flex flex-col justify-between items-center py-6 bg-secondary-light dark:bg-tertiary-dark'>
+    <div className='w-fit flex flex-col justify-between items-center py-6 bg-secondary-light dark:bg-tertiary-dark h-screen sticky top-0'>
       <NavLink to='#' className='px-1'>
         {/* <img src={Logo} alt='Chat' /> */}
       </NavLink>

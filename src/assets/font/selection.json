@@ -4,6 +4,118 @@
     {
       "icon": {
         "paths": [
+          "M996.2 11.2c20.2 14 30.8 38.2 27 62.4l-128 832c-3 19.4-14.8 36.4-32 46s-37.8 10.8-56 3.2l-239.2-99.4-137 148.2c-17.8 19.4-45.8 25.8-70.4 16.2s-40.6-33.4-40.6-59.8v-167.2c0-8 3-15.6 8.4-21.4l335.2-365.8c11.6-12.6 11.2-32-0.8-44s-31.4-12.8-44-1.4l-406.8 361.4-176.6-88.4c-21.2-10.6-34.8-31.8-35.4-55.4s11.8-45.6 32.2-57.4l896-512c21.4-12.2 47.8-11 68 2.8z"
+        ],
+        "attrs": [{}],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "grid": 0,
+        "tags": ["paper-plane-solid"]
+      },
+      "attrs": [{}],
+      "properties": {
+        "order": 29,
+        "id": 16,
+        "name": "paper-plane-solid",
+        "prevSize": 32
+      },
+      "setIdx": 0,
+      "setId": 3,
+      "iconIdx": 0
+    },
+    {
+      "icon": {
+        "paths": [
+          "M329.8 49.2c-15.4-37.2-56-57-94.8-46.4l-176 48c-34.8 9.6-59 41.2-59 77.2 0 494.8 401.2 896 896 896 36 0 67.6-24.2 77.2-59l48-176c10.6-38.8-9.2-79.4-46.4-94.8l-192-80c-32.6-13.6-70.4-4.2-92.6 23.2l-80.8 98.6c-140.8-66.6-254.8-180.6-321.4-321.4l98.6-80.6c27.4-22.4 36.8-60 23.2-92.6l-80-192z"
+        ],
+        "attrs": [{}],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "grid": 0,
+        "tags": ["phone-solid"]
+      },
+      "attrs": [{}],
+      "properties": {
+        "order": 26,
+        "id": 15,
+        "name": "phone-solid",
+        "prevSize": 32
+      },
+      "setIdx": 0,
+      "setId": 3,
+      "iconIdx": 1
+    },
+    {
+      "icon": {
+        "paths": [
+          "M0 256c0-70.6 57.4-128 128-128h512c70.6 0 128 57.4 128 128v512c0 70.6-57.4 128-128 128h-512c-70.6 0-128-57.4-128-128v-512zM1118.2 199.6c20.8 11.2 33.8 32.8 33.8 56.4v512c0 23.6-13 45.2-33.8 56.4s-46 10-65.8-3.2l-220.4-147v-324.4l28.4-19 192-128c19.6-13 44.8-14.4 65.8-3.2z"
+        ],
+        "attrs": [{}],
+        "width": 1152,
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "grid": 0,
+        "tags": ["video-solid"]
+      },
+      "attrs": [{}],
+      "properties": {
+        "order": 27,
+        "id": 14,
+        "name": "video-solid",
+        "prevSize": 32
+      },
+      "setIdx": 0,
+      "setId": 3,
+      "iconIdx": 2
+    },
+    {
+      "icon": {
+        "paths": [
+          "M16 512c0-61.856 50.144-112 112-112s112 50.144 112 112v0c0 61.856-50.144 112-112 112s-112-50.144-112-112v0zM336 512c0-61.856 50.144-112 112-112s112 50.144 112 112v0c0 61.856-50.144 112-112 112s-112-50.144-112-112v0zM768 400c61.856 0 112 50.144 112 112s-50.144 112-112 112v0c-61.856 0-112-50.144-112-112s50.144-112 112-112v0z"
+        ],
+        "attrs": [{}],
+        "width": 896,
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "grid": 0,
+        "tags": ["ellipsis-solid"]
+      },
+      "attrs": [{}],
+      "properties": {
+        "order": 28,
+        "id": 13,
+        "name": "ellipsis-solid",
+        "prevSize": 32
+      },
+      "setIdx": 0,
+      "setId": 3,
+      "iconIdx": 3
+    },
+    {
+      "icon": {
+        "paths": [
+          "M832 416c0 91.8-29.8 176.6-80 245.4l253.2 253.4c25 25 25 65.6 0 90.6s-65.6 25-90.6 0l-253.2-253.4c-68.8 50.4-153.6 80-245.4 80-229.8 0-416-186.2-416-416s186.2-416 416-416 416 186.2 416 416zM416 704c159.058 0 288-128.942 288-288s-128.942-288-288-288v0c-159.058 0-288 128.942-288 288s128.942 288 288 288v0z"
+        ],
+        "attrs": [{}],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "grid": 0,
+        "tags": ["magnifying-glass"]
+      },
+      "attrs": [{}],
+      "properties": {
+        "order": 25,
+        "id": 12,
+        "name": "magnifying-glass",
+        "prevSize": 32
+      },
+      "setIdx": 0,
+      "setId": 3,
+      "iconIdx": 4
+    },
+    {
+      "icon": {
+        "paths": [
           "M608 832c0 53.019-42.981 96-96 96s-96-42.981-96-96v0c0-53.019 42.981-96 96-96s96 42.981 96 96v0zM608 512c0 53.019-42.981 96-96 96s-96-42.981-96-96v0c0-53.019 42.981-96 96-96s96 42.981 96 96v0zM608 192c0 53.019-42.981 96-96 96s-96-42.981-96-96v0c0-53.019 42.981-96 96-96s96 42.981 96 96v0z"
         ],
         "attrs": [{}],
@@ -16,12 +128,12 @@
       "properties": {
         "order": 23,
         "id": 11,
-        "name": "three-dot",
+        "name": "ellipsis-vertical-solid",
         "prevSize": 32
       },
       "setIdx": 0,
       "setId": 3,
-      "iconIdx": 0
+      "iconIdx": 5
     },
     {
       "icon": {
@@ -43,7 +155,7 @@
       },
       "setIdx": 0,
       "setId": 3,
-      "iconIdx": 1
+      "iconIdx": 6
     },
     {
       "icon": {
@@ -65,7 +177,7 @@
       },
       "setIdx": 0,
       "setId": 3,
-      "iconIdx": 2
+      "iconIdx": 7
     },
     {
       "icon": {
@@ -95,7 +207,7 @@
       },
       "setIdx": 0,
       "setId": 3,
-      "iconIdx": 3
+      "iconIdx": 8
     },
     {
       "icon": {
@@ -117,7 +229,7 @@
       },
       "setIdx": 0,
       "setId": 3,
-      "iconIdx": 4
+      "iconIdx": 9
     },
     {
       "icon": {
@@ -139,7 +251,7 @@
       },
       "setIdx": 0,
       "setId": 3,
-      "iconIdx": 5
+      "iconIdx": 10
     },
     {
       "icon": {
@@ -161,7 +273,7 @@
       },
       "setIdx": 0,
       "setId": 3,
-      "iconIdx": 6
+      "iconIdx": 11
     },
     {
       "icon": {
@@ -184,7 +296,7 @@
       },
       "setIdx": 0,
       "setId": 3,
-      "iconIdx": 7
+      "iconIdx": 12
     },
     {
       "icon": {
@@ -207,7 +319,7 @@
       },
       "setIdx": 0,
       "setId": 3,
-      "iconIdx": 8
+      "iconIdx": 13
     },
     {
       "icon": {
@@ -229,7 +341,7 @@
       },
       "setIdx": 0,
       "setId": 3,
-      "iconIdx": 9
+      "iconIdx": 14
     },
     {
       "icon": {
@@ -252,7 +364,7 @@
       },
       "setIdx": 0,
       "setId": 3,
-      "iconIdx": 10
+      "iconIdx": 15
     },
     {
       "icon": {
@@ -275,7 +387,7 @@
       },
       "setIdx": 0,
       "setId": 3,
-      "iconIdx": 11
+      "iconIdx": 16
     }
   ],
   "height": 1024,

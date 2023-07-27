@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
-import Icon from '../Icon';
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -23,7 +22,7 @@ const Input = (props: InputProps) => {
         {...rest}
         {...refRegister}
         className={
-          'px-3 py-2 w-full outline-none  dark:bg-input-dark text-primary-light dark:text-secondary-dark rounded-r-md ' +
+          'px-3 py-2 w-full outline-none  dark:bg-input-dark rounded-r-md ' +
           +(!prefixIcon ? ' rounded-l-md' : '')
         }
       />
