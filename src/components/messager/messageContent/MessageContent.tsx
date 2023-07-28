@@ -22,7 +22,7 @@ const ItemMessage = (props: IItemMessageProps) => {
       })}
     >
       <Avatar size='md' />
-      <p className='py-1 px-2 bg-gray-400 rounded-md max-w-[600px] bg-gradient-to-r from-indigo-500 to-purple-500'>
+      <p className='py-1 px-2 rounded-md max-w-[600px] bg-gray-300 dark:bg-gradient-to-r from-indigo-500 to-purple-500'>
         {message}
       </p>
     </div>

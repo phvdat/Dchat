@@ -13,7 +13,7 @@ const HeadMessage = (props: IHeadMessageProps) => {
     <div
       className='flex justify-between px-5 py-3 bg-secondary-light
 		dark:bg-secondary-dark absolute top-0 w-full
-		border-b border-gray-200 dark:border-gray-500 shadow-md'
+		border-b border-gray-200 dark:border-gray-500 shadow-sm'
     >
       <div className='flex gap-2 items-center cursor-pointer'>
         <Avatar name={name} url={avatar} size='md' />
