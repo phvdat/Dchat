@@ -10,14 +10,14 @@ const DefaultLayout = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (loading) {
-      return;
-    }
-    if (!user) {
+    if (!loading && !user) {
       navigate(RoutePath.Login);
     }
-  }, [user]);
+  }, [loading]);
 
+  if (loading) {
+    return null;
+  }
   return (
     <div className='flex'>
       <Sidebar />
