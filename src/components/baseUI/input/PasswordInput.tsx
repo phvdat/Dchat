@@ -1,4 +1,4 @@
-import Icon from 'components/baseUI/Icon';
+import Icon from 'components/baseUI/icon/Icon';
 import { useState } from 'react';
 import Input, { InputProps } from './Input';
 

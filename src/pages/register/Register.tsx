@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import Button from 'components/baseUI/button/Button';
 import ErrorMessage from 'components/baseUI/errorMessage/ErrorMessage';
-import Icon from 'components/baseUI/Icon';
+import Icon from 'components/baseUI/icon/Icon';
 import Input from 'components/baseUI/input/Input';
 import PasswordInput from 'components/baseUI/input/PasswordInput';
 import { db } from 'config/firebase';

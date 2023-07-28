@@ -1,5 +1,5 @@
 // import Logo from 'src/assets/imgs/avatar.jpg';
-import Icon from 'components/baseUI/Icon';
+import Icon from 'components/baseUI/icon/Icon';
 import useThemeMode from 'hooks/useThemeMode';
 import { NavLink } from 'react-router-dom';
 

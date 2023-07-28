@@ -1,6 +1,6 @@
 import Avatar from 'components/baseUI/avatar/Avatar';
 import Dropdown from 'components/baseUI/dropdown/Dropdown';
-import Icon from 'components/baseUI/Icon';
+import Icon from 'components/baseUI/icon/Icon';
 
 interface IHeadMessageProps {
   name: string;

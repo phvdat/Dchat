@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import Icon from 'components/baseUI/Icon';
+import Icon from 'components/baseUI/icon/Icon';
 import Input from 'components/baseUI/input/Input';
 import { auth, db } from 'config/firebase';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
