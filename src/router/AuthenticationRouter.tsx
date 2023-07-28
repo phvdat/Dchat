@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Navigate, Outlet } from "react-router-dom";
-import { RoutePath } from "../constants/routes";
+import { RoutePath } from 'constants/routes';
+import { useState } from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
 
 const AuthenticationRouter = () => {
   const [authentication] = useState(false);

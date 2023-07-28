@@ -1,7 +1,7 @@
 import Icon from 'components/baseUI/Icon';
 import Input from 'components/baseUI/input/Input';
-import MostInteractiveFriends from '../mostInteractiveFriends/MostInteractiveFriends';
-import RecentlyFriends from '../recentlyFriends/RecentlyFriends';
+import MostInteractiveFriends from 'components/leftContent/mostInteractiveFriends/MostInteractiveFriends';
+import RecentlyFriends from 'components/leftContent/recentlyFriends/RecentlyFriends';
 
 const Chats = () => {
   return (

@@ -1,7 +1,7 @@
 // import Logo from 'src/assets/imgs/avatar.jpg';
+import Icon from 'components/baseUI/Icon';
 import useThemeMode from 'hooks/useThemeMode';
 import { NavLink } from 'react-router-dom';
-import Icon from '../baseUI/Icon';
 
 const Sidebar = () => {
   const { theme, setTheme } = useThemeMode();

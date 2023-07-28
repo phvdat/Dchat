@@ -1,14 +1,7 @@
 import { realtimeDb } from 'config/firebase';
-import {
-  get,
-  onValue,
-  push,
-  ref,
-  remove,
-  set,
-  update
-} from 'firebase/database';
+import { onValue, push, ref, remove, set, update } from 'firebase/database';
 
+// eslint-disable-next-line no-unused-vars
 export const fireGet = (path: string, cb: (data: unknown) => void) => {
   onValue(ref(realtimeDb, path), (snapshot) => {
     const data = snapshot.val();

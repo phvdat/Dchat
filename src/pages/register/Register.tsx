@@ -8,11 +8,9 @@ import { db } from 'config/firebase';
 import { RoutePath } from 'constants/routes';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { addDoc, collection } from 'firebase/firestore';
-// import { fireGet, firePush } from 'helper/firebase_helper';
 import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Trans, useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
 interface IRegisterFormValues {
@@ -23,7 +21,6 @@ interface IRegisterFormValues {
 }
 const RegisterPage = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState('');
   const schema = useMemo(() => {
     return yup.object<IRegisterFormValues>().shape({

@@ -1,5 +1,5 @@
+import Icon from 'components/baseUI/Icon';
 import { useState } from 'react';
-import Icon from '../Icon';
 import Input, { InputProps } from './Input';
 
 const PasswordInput = (props: InputProps) => {

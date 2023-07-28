@@ -16,13 +16,7 @@ const SendMessage = () => {
       message: yup.string().trim().required('Have no message')
     });
   }, []);
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    setFocus,
-    formState: { errors }
-  } = useForm<ISendMessage>({
+  const { register, handleSubmit, setValue, setFocus } = useForm<ISendMessage>({
     resolver: yupResolver(schema)
   });
 
