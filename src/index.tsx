@@ -1,10 +1,10 @@
 import './i18n';
 import './index.css';
+import 'config/firebase';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import routesConfig from './router';
-
 const router = createBrowserRouter(routesConfig);
 
 const root = ReactDOM.createRoot(

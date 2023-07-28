@@ -1,5 +1,6 @@
 import App from 'App';
 import DefaultLayout from 'components/layout/DefaultLayout';
+import NonAuthenticated from 'components/layout/NonAuthenticated';
 import Chats from 'components/leftContent/chats/Chats';
 import Profile from 'components/leftContent/profile/Profile';
 import { RoutePath } from 'constants/routes';
@@ -16,11 +17,19 @@ const routesConfig: RouteObject[] = [
     children: [
       {
         path: RoutePath.Login,
-        element: <LoginPage />
+        element: (
+          <NonAuthenticated>
+            <LoginPage />
+          </NonAuthenticated>
+        )
       },
       {
         path: RoutePath.Register,
-        element: <RegisterPage />
+        element: (
+          <NonAuthenticated>
+            <RegisterPage />
+          </NonAuthenticated>
+        )
       },
       {
         element: <DefaultLayout />,

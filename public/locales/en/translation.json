@@ -5,17 +5,20 @@
     "description": "Sign in to continue to ChatD.",
     "descriptionSignUp": "Get your ChatD account now.",
     "userName": "Username",
-		"email": "Email",
+    "email": "Email",
     "password": "Password",
-		"confirmPassword": "Confirm password",
-		"rememberMe": "Remember me",
-		"dontHaveAccount": "Don't have an account? <a>Sign up now</a>",
-		"haveAccount": "Already have an account? <a>Sign in</a>"
+    "confirmPassword": "Confirm password",
+    "rememberMe": "Remember me",
+    "dontHaveAccount": "Don't have an account? <a>Sign up now</a>",
+    "haveAccount": "Already have an account? <a>Sign in</a>",
+    "emailPasswordIncorrect": "Email or password is incorrect",
+    "emailAlreadyInUse": "Email address already in use",
+    "somethingWentWrong": "Something went wrong please try again later"
   },
-	"validation":{
-		"required": "This field is required",
-		"email": "Please enter a valid email address",
-		"password": "Password must be at least {{min}} characters long",
-		"confirmPassword": "Passwords must match"
-	}
+  "validation": {
+    "required": "This field is required",
+    "email": "Please enter a valid email address",
+    "password": "Password must be at least {{min}} characters long",
+    "confirmPassword": "Passwords must match"
+  }
 }

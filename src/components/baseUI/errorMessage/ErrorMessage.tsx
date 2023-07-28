@@ -1,9 +1,20 @@
+import classNames from 'classnames';
+
 interface IErrorMessageProps {
   message?: string;
+  textCenter?: boolean;
 }
-const ErrorMessage = ({ message }: IErrorMessageProps) => {
+const ErrorMessage = ({ message, textCenter = false }: IErrorMessageProps) => {
   if (!message) return null;
-  return <p className='text-error dark:text-error mt-2'>{message}</p>;
+  return (
+    <p
+      className={classNames('text-error dark:text-error mt-2 text-[12px]', {
+        'text-center': textCenter
+      })}
+    >
+      {message}
+    </p>
+  );
 };
 
 export default ErrorMessage;

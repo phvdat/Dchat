@@ -59,8 +59,9 @@ const Avatar = (props: IAvatarProps) => {
         </div>
       ) : (
         <img
-          className={`object-cover rounded-full shadow-sm h-[${getSize(size)}px]
-					w-[${getSize(size)}px]`}
+          className={`object-cover rounded-full shadow-sm 
+					min-h-[${getSize(size)}px] max-h-[${getSize(size)}px]
+					min-w-[${getSize(size)}px] max-w-[${getSize(size)}px]`}
           src={url}
           alt='avatar'
           onError={onErrorSrc}

@@ -5,10 +5,10 @@ import Icon from 'components/baseUI/Icon';
 import Input from 'components/baseUI/input/Input';
 import PasswordInput from 'components/baseUI/input/PasswordInput';
 import { RoutePath } from 'constants/routes';
-import { useMemo } from 'react';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Trans, useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
 interface ILoginFormValues {
@@ -18,7 +18,8 @@ interface ILoginFormValues {
 }
 const LoginPage = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState('');
+
   const schema = useMemo(() => {
     return yup.object<ILoginFormValues>().shape({
       email: yup
@@ -39,8 +40,13 @@ const LoginPage = () => {
   });
 
   const onSubmit = async (data: ILoginFormValues) => {
-    navigate(RoutePath.Home);
-    // call api
+    const { email, password } = data;
+    const auth = getAuth();
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch (error) {
+      setErrorMessage(t('login.emailPasswordIncorrect'));
+    }
   };
 
   return (
@@ -51,6 +57,7 @@ const LoginPage = () => {
         className='w-full max-w-md bg-secondary-light dark:bg-secondary-dark px-8 py-10  rounded-md shadow-md text-left'
         onSubmit={handleSubmit(onSubmit)}
       >
+        <ErrorMessage textCenter message={errorMessage} />
         <div className='flex flex-col align-top mb-4'>
           <label htmlFor='email' className='mb-2'>
             {t('login.email')}

@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
@@ -21,10 +22,10 @@ const Input = (props: InputProps) => {
       <input
         {...rest}
         {...refRegister}
-        className={
-          'px-3 py-2 w-full outline-none  dark:bg-input-dark rounded-r-md ' +
-          +(!prefixIcon ? ' rounded-l-md' : '')
-        }
+        className={classNames(
+          'px-3 py-2 w-full outline-none  dark:bg-input-dark rounded-r-md',
+          { 'rounded-l-md': !prefixIcon }
+        )}
       />
     </div>
   );
