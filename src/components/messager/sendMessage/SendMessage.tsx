@@ -51,7 +51,7 @@ const SendMessage = () => {
       <div className='flex-1'>
         <Input refRegister={register('message')} placeholder='Enter message' />
       </div>
-      <div className='relative'>
+      <div className='relative hidden md:block'>
         <div
           onClick={() => setShowEmojiPicker(!showEmojiPicker)}
           className='cursor-pointer px-2'
