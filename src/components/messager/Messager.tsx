@@ -3,13 +3,9 @@ import MessageContent from './messageContent/MessageContent';
 import SendMessage from './sendMessage/SendMessage';
 
 const Messager = () => {
-  const accountInfo = {
-    name: 'Pham Dat',
-    avatar: 'https://picsum.photos/id/237/200/300'
-  };
   return (
     <div className='h-screen sticky sm:relative '>
-      <HeadMessage name={accountInfo.name} avatar={accountInfo.avatar} />
+      <HeadMessage />
       <MessageContent />
       <SendMessage />
     </div>

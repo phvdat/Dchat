@@ -1,14 +1,48 @@
 import Avatar from 'components/baseUI/avatar/Avatar';
 import Dropdown from 'components/baseUI/dropdown/Dropdown';
 import Icon from 'components/baseUI/icon/Icon';
+import { db } from 'config/firebase';
+import {
+  collection,
+  doc,
+  documentId,
+  limit,
+  onSnapshot,
+  orderBy,
+  query,
+  where
+} from 'firebase/firestore';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-interface IHeadMessageProps {
+interface IUser {
   name: string;
   avatar: string;
 }
 
-const HeadMessage = (props: IHeadMessageProps) => {
-  const { name, avatar } = props;
+const HeadMessage = () => {
+  const { uid } = useParams();
+  const [user, setUser] = useState<IUser>();
+
+  useEffect(() => {
+    if (uid) {
+      const q = query(
+        collection(db, 'users')
+        // where('uid', '==', uid),
+        // limit(1),
+        // doc(uid)
+        // documentId(uid)
+      );
+      const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
+        // setUser(QuerySnapshot.docs.);
+        console.log(QuerySnapshot.docs);
+
+        return () => unsubscribe();
+      });
+    }
+  }, [uid]);
+
+  const { name, avatar } = { name: 'dat', avatar: 'fdas f' };
   return (
     <div
       className='flex justify-between px-5 py-3 bg-secondary-light

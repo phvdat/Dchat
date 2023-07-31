@@ -14,6 +14,7 @@ const LoginWithGoogle = () => {
         uid: user.uid,
         userName: user.displayName,
         email: user.email,
+        photoURL: user.photoURL,
         authProvider: 'google'
       });
     } catch (error) {
