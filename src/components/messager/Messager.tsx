@@ -8,7 +8,7 @@ const Messager = () => {
     avatar: 'https://picsum.photos/id/237/200/300'
   };
   return (
-    <div className='relative h-screen'>
+    <div className='h-screen sticky sm:relative '>
       <HeadMessage name={accountInfo.name} avatar={accountInfo.avatar} />
       <MessageContent />
       <SendMessage />

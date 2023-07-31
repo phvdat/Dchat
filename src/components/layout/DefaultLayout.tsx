@@ -21,7 +21,7 @@ const DefaultLayout = () => {
   return (
     <div className='flex'>
       <Sidebar />
-      <div className='min-h-screen w-full'>
+      <div className='min-h-screen w-full ml-[52px]'>
         <Outlet />
       </div>
     </div>

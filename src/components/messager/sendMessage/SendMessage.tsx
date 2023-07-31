@@ -3,7 +3,6 @@ import Icon from 'components/baseUI/icon/Icon';
 import Input from 'components/baseUI/input/Input';
 import { auth, db } from 'config/firebase';
 import EmojiPicker, { EmojiClickData } from 'emoji-picker-react';
-import { set } from 'firebase/database';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -39,7 +38,6 @@ const SendMessage = () => {
   const onEmojiClick = (emoji: EmojiClickData, event: MouseEvent) => {
     setValue('message', getValues('message') + emoji.emoji);
     setFocus('message');
-    setShowEmojiPicker(false);
   };
 
   return (
@@ -49,7 +47,11 @@ const SendMessage = () => {
 	absolute bottom-0 w-full border-t border-gray-200 dark:border-gray-500'
     >
       <div className='flex-1'>
-        <Input refRegister={register('message')} placeholder='Enter message' />
+        <Input
+          refRegister={register('message')}
+          placeholder='Enter message'
+          autoComplete='off'
+        />
       </div>
       <div className='relative hidden md:block'>
         <div

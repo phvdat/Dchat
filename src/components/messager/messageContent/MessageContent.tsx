@@ -67,7 +67,7 @@ const MessageContent = () => {
   }, [messages]);
 
   return (
-    <ul className='flex flex-col gap-2 overflow-auto max-h-screen pt-20'>
+    <ul className='flex flex-col gap-2 overflow-auto height-screen pt-20'>
       {messages?.map((item) => (
         <li key={item.id}>
           <ItemMessage {...item} />

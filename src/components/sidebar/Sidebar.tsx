@@ -9,7 +9,7 @@ const Sidebar = () => {
   return (
     <div
       className='w-fit flex flex-col justify-between items-center py-6 bg-white shadow-sm 
-		dark:bg-tertiary-dark h-screen sticky top-0'
+		dark:bg-tertiary-dark h-full fixed top-0 left-0'
     >
       <NavLink to='#' className='px-1'>
         {/* <img src={Logo} alt='Chat' /> */}
