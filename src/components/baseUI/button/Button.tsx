@@ -6,14 +6,15 @@ interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button = (props: IButtonProps) => {
-  const { fullWidth = false, children, ...rest } = props;
+  const { fullWidth = false, children, className, ...rest } = props;
 
   return (
     <button
       {...rest}
       className={
         'py-2 px-3 cursor-pointer w-fit bg-primary rounded-md hover:bg-primary-deep shadow-md' +
-        (fullWidth ? ' w-full' : '')
+        (fullWidth ? ' w-full ' : '') +
+        className
       }
     >
       {children || 'Button'}

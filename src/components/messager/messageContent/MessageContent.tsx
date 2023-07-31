@@ -8,7 +8,7 @@ import {
   orderBy,
   query
 } from 'firebase/firestore';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { IItemMessageProps } from 'types/MessageType';
 
@@ -36,7 +36,7 @@ const MessageContent = () => {
   const scrollDown = () => {
     if (ref.current) {
       ref.current.scrollIntoView({
-        behavior: 'smooth',
+        // behavior: 'smooth',
         block: 'start'
       });
     }
@@ -62,8 +62,9 @@ const MessageContent = () => {
     return () => unsubscribe();
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     scrollDown();
+    // need a button scroll down
   }, [messages]);
 
   return (

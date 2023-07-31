@@ -10,6 +10,7 @@ import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Trans, useTranslation } from 'react-i18next';
 import * as yup from 'yup';
+import LoginWithGoogle from './LoginWithGoogle';
 
 interface ILoginFormValues {
   email: string;
@@ -93,6 +94,9 @@ const LoginPage = () => {
         <Button type='submit' fullWidth>
           {t('login.signIn')}
         </Button>
+        <div className='mt-4'>
+          <LoginWithGoogle />
+        </div>
       </form>
       <p className='mt-7'>
         <Trans

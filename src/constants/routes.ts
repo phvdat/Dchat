@@ -5,5 +5,5 @@ export const RoutePath = {
   ForgotPassword: '/forgot-password',
 
   Profile: '/profile',
-  Chat: '/chat'
+  Chat: '/chat/:id'
 };
