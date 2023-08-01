@@ -4,7 +4,7 @@ import SendMessage from './sendMessage/SendMessage';
 
 const Messager = () => {
   return (
-    <div className='h-screen sticky sm:relative '>
+    <div className='h-screen no-scrollbar sticky sm:relative '>
       <HeadMessage />
       <MessageContent />
       <SendMessage />

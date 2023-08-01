@@ -85,7 +85,7 @@ const MessageContent = () => {
           <ItemMessage {...item} />
         </li>
       ))}
-      <span ref={ref} className='block min-h-[60px]'></span>
+      <span ref={ref} className='block md:min-h-[60px]'></span>
     </ul>
   );
 };

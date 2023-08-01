@@ -19,12 +19,9 @@ const DefaultLayout = () => {
     return null;
   }
   return (
-    <div className='flex'>
-      <Sidebar />
-      <div className='min-h-screen w-full ml-[52px]'>
-        <Outlet />
-      </div>
-    </div>
+    <>
+      <Outlet />
+    </>
   );
 };
 

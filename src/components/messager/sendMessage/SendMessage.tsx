@@ -74,7 +74,8 @@ const SendMessage = () => {
     <form
       onSubmit={handleSubmit(onSubmit)}
       className='flex items-center gap-2 p-2 bg-secondary-light dark:bg-secondary-dark 
-	absolute bottom-0 w-full border-t border-gray-200 dark:border-gray-500'
+				w-full border-t border-gray-200 dark:border-gray-500
+				md:absolute fixed bottom-0'
     >
       <div className='flex-1'>
         <Input
@@ -83,7 +84,7 @@ const SendMessage = () => {
           autoComplete='off'
         />
       </div>
-      <div className='relative md:block'>
+      <div className='hidden md:block'>
         <div
           onClick={() => setShowEmojiPicker(!showEmojiPicker)}
           className='cursor-pointer px-2'

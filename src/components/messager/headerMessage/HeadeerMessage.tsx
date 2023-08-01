@@ -1,8 +1,9 @@
 import Avatar from 'components/baseUI/avatar/Avatar';
 import Dropdown from 'components/baseUI/dropdown/Dropdown';
 import Icon from 'components/baseUI/icon/Icon';
+import { RoutePath } from 'constants/routes';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getUserById } from 'service/common';
 export interface IUser {
   authProvider: string;
@@ -25,11 +26,14 @@ const HeadMessage = () => {
 
   return (
     <div
-      className='flex justify-between px-5 py-3 bg-secondary-light
-		dark:bg-secondary-dark absolute top-0 w-full
-		border-b border-gray-200 dark:border-gray-500 shadow-sm'
+      className='flex justify-between px-5 py-3 bg-secondary-light dark:bg-secondary-dark 
+				w-full	border-b border-gray-200 dark:border-gray-500 shadow-sm
+				md:absolute top-0 fixed'
     >
       <div className='flex gap-2 items-center cursor-pointer'>
+        <Link to={RoutePath.Chat} className='md:hidden'>
+          <Icon icon='arrow-left-solid' className='cursor-pointer' />
+        </Link>
         <Avatar name={user?.userName} url={user?.photoURL} size='md' />
         <span>{user?.userName}</span>
       </div>
