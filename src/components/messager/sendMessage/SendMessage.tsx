@@ -43,7 +43,7 @@ const SendMessage = () => {
       await getDoc(doc(db, 'users', user.uid)).then((docSnap) => {
         if (docSnap.exists()) {
           const friends = docSnap.data().friends;
-          const friend = friends.find((item: IUser) => (item.uid = uid));
+          const friend = friends.find((item: IUser) => item.uid === uid);
           updateDoc(doc(db, 'conversation', friend.conversationId), {
             message: arrayUnion({
               id: uuidv4(),
