@@ -1,10 +1,23 @@
 // import Logo from 'src/assets/imgs/avatar.jpg';
 import Icon from 'components/baseUI/icon/Icon';
+import { RoutePath } from 'constants/routes';
+import { getAuth, signOut } from 'firebase/auth';
 import useThemeMode from 'hooks/useThemeMode';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
   const { theme, setTheme } = useThemeMode();
+  const navigate = useNavigate();
+  const auth = getAuth();
+  const handleLogout = async () => {
+    signOut(auth)
+      .then(() => {
+        navigate(RoutePath.Login);
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  };
 
   return (
     <div
@@ -38,6 +51,15 @@ const Sidebar = () => {
         >
           <Icon
             icon={theme === 'dark' ? 'moon-solid' : 'sun'}
+            size={20}
+            className='cursor-pointer'
+          />
+        </div>
+
+        <div className='w-full text-center py-2'>
+          <Icon
+            onClick={handleLogout}
+            icon='logout'
             size={20}
             className='cursor-pointer'
           />
