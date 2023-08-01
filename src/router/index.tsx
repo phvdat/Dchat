@@ -1,7 +1,7 @@
 import App from 'App';
 import DefaultLayout from 'components/layout/DefaultLayout';
 import NonAuthenticated from 'components/layout/NonAuthenticated';
-import Chats from 'components/leftContent/chats/Chats';
+import Contacts from 'components/leftContent/contacts/Contacts';
 import Profile from 'components/leftContent/profile/Profile';
 import { RoutePath } from 'constants/routes';
 import HomePage from 'pages/home/Home';
@@ -48,7 +48,7 @@ const routesConfig: RouteObject[] = [
 
               {
                 path: RoutePath.Chat,
-                element: <Chats />
+                element: <Contacts />
               }
             ]
           }

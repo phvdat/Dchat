@@ -3,15 +3,26 @@ import Icon from 'components/baseUI/icon/Icon';
 import Input from 'components/baseUI/input/Input';
 import { auth, db } from 'config/firebase';
 import EmojiPicker, { EmojiClickData } from 'emoji-picker-react';
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import {
+  arrayUnion,
+  doc,
+  getDoc,
+  serverTimestamp,
+  updateDoc
+} from 'firebase/firestore';
 import { useMemo, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
 import * as yup from 'yup';
+import { IUser } from '../headerMessage/HeadeerMessage';
 interface ISendMessage {
   message: string;
 }
 const SendMessage = () => {
+  const { uid } = useParams();
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [user] = useAuthState(auth);
   const schema = useMemo(() => {
     return yup.object<ISendMessage>().shape({
       message: yup.string().trim().required('Have no message')
@@ -23,16 +34,32 @@ const SendMessage = () => {
     });
 
   const onSubmit = async ({ message }: ISendMessage) => {
-    await addDoc(collection(db, 'messages'), {
-      message: message.trim(),
-      name: auth.currentUser?.displayName,
-      avatar: auth.currentUser?.photoURL,
-      createdAt: serverTimestamp(),
-      uid: auth.currentUser?.uid
-    });
-    setValue('message', '');
-    setFocus('message');
-    setShowEmojiPicker(false);
+    try {
+      if (!user || !uid) {
+        return;
+      }
+      await getDoc(doc(db, 'users', user.uid)).then((docSnap) => {
+        if (docSnap.exists()) {
+          const friends = docSnap.data().friends;
+          const friend = friends.find((item: IUser) => (item.uid = uid));
+          updateDoc(doc(db, 'conversation', friend.conversationId), {
+            message: arrayUnion({
+              content: message.trim(),
+              name: auth.currentUser?.displayName,
+              avatar: auth.currentUser?.photoURL,
+              createdAt: serverTimestamp(),
+              uid: auth.currentUser?.uid
+            })
+          });
+        }
+      });
+
+      setValue('message', '');
+      setFocus('message');
+      setShowEmojiPicker(false);
+    } catch (error) {
+      console.log('falseeeee', error);
+    }
   };
 
   const onEmojiClick = (emoji: EmojiClickData, event: MouseEvent) => {

@@ -2,7 +2,7 @@ import Button from 'components/baseUI/button/Button';
 import Icon from 'components/baseUI/icon/Icon';
 import { db } from 'config/firebase';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { addDoc, collection } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 
 const LoginWithGoogle = () => {
   const provider = new GoogleAuthProvider();
@@ -10,12 +10,13 @@ const LoginWithGoogle = () => {
     try {
       const auth = getAuth();
       const { user } = await signInWithPopup(auth, provider);
-      await addDoc(collection(db, 'users'), {
+      await setDoc(doc(db, 'users', user.uid), {
         uid: user.uid,
         userName: user.displayName,
         email: user.email,
         photoURL: user.photoURL,
-        authProvider: 'google'
+        authProvider: 'google',
+        friends: {}
       });
     } catch (error) {
       //

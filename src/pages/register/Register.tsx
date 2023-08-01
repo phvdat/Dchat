@@ -7,7 +7,7 @@ import PasswordInput from 'components/baseUI/input/PasswordInput';
 import { db } from 'config/firebase';
 import { RoutePath } from 'constants/routes';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
-import { addDoc, collection } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Trans, useTranslation } from 'react-i18next';
@@ -57,11 +57,12 @@ const RegisterPage = () => {
         email,
         password
       );
-      await addDoc(collection(db, 'users'), {
+      await setDoc(doc(db, 'users', user.uid), {
         uid: user.uid,
         userName,
         email,
-        authProvider: 'local'
+        authProvider: 'local',
+        friends: {}
       });
     } catch (error: any) {
       const errorCode = error.code;

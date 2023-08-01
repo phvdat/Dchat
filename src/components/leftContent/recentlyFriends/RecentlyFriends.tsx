@@ -1,8 +1,10 @@
+import classNames from 'classnames';
 import Avatar from 'components/baseUI/avatar/Avatar';
-import { db } from 'config/firebase';
+import { auth, db } from 'config/firebase';
 import { collection, onSnapshot, query } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link, NavLink } from 'react-router-dom';
 
 interface AccountItemProps {
   uid: string;
@@ -12,37 +14,54 @@ interface AccountItemProps {
 const AccountItem = (props: AccountItemProps) => {
   const { photoURL, userName, uid } = props;
   return (
-    <Link
-      className='flex items-center gap-5 cursor-pointer 
-		hover:dark:bg-input-dark hover:bg-input-light p-4 rounded-md'
+    <NavLink
+      className={({ isActive }) =>
+        classNames(
+          'flex items-center gap-5 cursor-pointer',
+          'hover:dark:bg-input-dark hover:bg-input-light p-4 rounded-md',
+          {
+            'bg-input-light': isActive
+          },
+          {
+            'dark:bg-input-dark': isActive
+          }
+        )
+      }
       to={`/chat/${uid}`}
     >
       <Avatar url={photoURL} name={userName} />
       <p className='truncate text-xs font-semibold text-center'>{userName}</p>
-    </Link>
+    </NavLink>
   );
 };
 
 const RecentlyFriends = () => {
-  const [user, setUser] = useState<AccountItemProps[]>();
+  const [users, setUsers] = useState<AccountItemProps[]>();
+
+  const [user] = useAuthState(auth);
 
   useEffect(() => {
+    if (!user) {
+      return;
+    }
     const q = query(collection(db, 'users'));
     const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
       const fetchedUsers: any = [];
       QuerySnapshot.forEach((doc) => {
-        fetchedUsers.push({ ...doc.data(), id: doc.id });
+        if (doc.data().uid !== user.uid)
+          fetchedUsers.push({ ...doc.data(), id: doc.id });
       });
-      setUser(fetchedUsers);
+      setUsers(fetchedUsers);
     });
     return () => unsubscribe();
-  }, []);
+  }, [user]);
+
   return (
     <div>
       <h2 className='my-7'>Recently</h2>
       <ul className='flex flex-col gap-2'>
-        {user
-          ? user.map((item) => (
+        {users
+          ? users.map((item) => (
               <li key={item.uid}>
                 <AccountItem {...item} />
               </li>
