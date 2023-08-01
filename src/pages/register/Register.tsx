@@ -75,11 +75,11 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className='flex flex-col justify-center items-center h-screen text-center'>
+    <div className='flex flex-col justify-center items-center h-screen text-center px-2'>
       <h1 className='text-base mb-3'>{t('login.signUp')}</h1>
       <span className='mb-7'>{t('login.descriptionSignUp')}</span>
       <form
-        className='w-full max-w-md bg-secondary-light dark:bg-secondary-dark px-8 py-10  rounded-md shadow-md text-left'
+        className='w-full max-w-md bg-secondary-light dark:bg-secondary-dark px-3 py-10  rounded-md shadow-md text-left'
         onSubmit={handleSubmit(onSubmit)}
       >
         <ErrorMessage textCenter message={errorMessage} />

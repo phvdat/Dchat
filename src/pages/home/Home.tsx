@@ -1,4 +1,6 @@
+import Contacts from 'components/leftContent/contacts/Contacts';
 import Messager from 'components/messager/Messager';
+import NoMessage from 'components/messager/NoMessage';
 import { auth, db } from 'config/firebase';
 import {
   addDoc,
@@ -64,11 +66,14 @@ const HomePage = () => {
         {uid ? (
           <Messager />
         ) : (
-          <div className='flex items-center justify-center h-screen'>
-            <h1 className='text-3xl font-bold text-gray-500 dark:text-gray-400'>
-              Select a friend to start chatting
-            </h1>
-          </div>
+          <>
+            <div className='hidden md:block'>
+              <NoMessage />
+            </div>
+            <div className='md:hidden'>
+              <Contacts />
+            </div>
+          </>
         )}
       </div>
     </div>
