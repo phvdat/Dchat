@@ -7,15 +7,17 @@ import {
   arrayUnion,
   doc,
   getDoc,
-  serverTimestamp,
+  Timestamp,
   updateDoc
 } from 'firebase/firestore';
 import { useMemo, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 import * as yup from 'yup';
 import { IUser } from '../headerMessage/HeadeerMessage';
+
 interface ISendMessage {
   message: string;
 }
@@ -44,10 +46,11 @@ const SendMessage = () => {
           const friend = friends.find((item: IUser) => (item.uid = uid));
           updateDoc(doc(db, 'conversation', friend.conversationId), {
             message: arrayUnion({
+              id: uuidv4(),
               content: message.trim(),
               name: auth.currentUser?.displayName,
               avatar: auth.currentUser?.photoURL,
-              createdAt: serverTimestamp(),
+              createdAt: Timestamp.now(),
               uid: auth.currentUser?.uid
             })
           });
@@ -58,11 +61,11 @@ const SendMessage = () => {
       setFocus('message');
       setShowEmojiPicker(false);
     } catch (error) {
-      console.log('falseeeee', error);
+      //
     }
   };
 
-  const onEmojiClick = (emoji: EmojiClickData, event: MouseEvent) => {
+  const onEmojiClick = (emoji: EmojiClickData) => {
     setValue('message', getValues('message') + emoji.emoji);
     setFocus('message');
   };
@@ -80,12 +83,12 @@ const SendMessage = () => {
           autoComplete='off'
         />
       </div>
-      <div className='relative hidden md:block'>
+      <div className='relative md:block'>
         <div
           onClick={() => setShowEmojiPicker(!showEmojiPicker)}
           className='cursor-pointer px-2'
         >
-          <Icon icon='face-smile-regular' />
+          <Icon icon='face-smile-solid' />
         </div>
         {showEmojiPicker && (
           <div className='absolute bottom-5 right-5'>

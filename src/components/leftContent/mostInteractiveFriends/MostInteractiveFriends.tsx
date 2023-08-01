@@ -1,81 +1,58 @@
-import React from 'react';
+import Avatar from 'components/baseUI/avatar/Avatar';
+import { auth, db } from 'config/firebase';
+import { collection, onSnapshot, query } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
-const mockData: AccountItemProps[] = [
-  {
-    id: '1',
-    avatar: 'https://i.pravatar.cc/300',
-    name: 'Patrickkkkkkkk'
-  },
-  {
-    id: '2',
-    avatar: 'https://i.pravatar.cc/300',
-    name: 'Doris'
-  },
-  {
-    id: '3',
-    avatar: 'https://i.pravatar.cc/300',
-    name: 'Emily'
-  },
-  {
-    id: '4',
-    avatar: 'https://i.pravatar.cc/300',
-    name: 'Steve'
-  },
-  {
-    id: '5',
-    avatar: 'https://i.pravatar.cc/300',
-    name: 'John'
-  },
-  {
-    id: '5',
-    avatar: 'https://i.pravatar.cc/300',
-    name: 'John'
-  },
-  {
-    id: '5',
-    avatar: 'https://i.pravatar.cc/300',
-    name: 'John'
-  },
-  {
-    id: '5',
-    avatar: 'https://i.pravatar.cc/300',
-    name: 'John'
-  },
-  {
-    id: '5',
-    avatar: 'https://i.pravatar.cc/300',
-    name: 'John'
-  }
-];
 interface AccountItemProps {
-  id: string;
-  avatar: string;
-  name: string;
+  uid: string;
+  photoURL: string;
+  userName: string;
 }
 const AccountItem = (props: AccountItemProps) => {
-  const { avatar, name } = props;
+  const { photoURL, userName } = props;
   return (
     <div className='max-w-[76px] min-w-[76px] min-h-[50px] rounded-md bg-input-light dark:bg-input-dark relative mt-7'>
       <a className='absolute min-w-[76px] max-w-[76px] bottom-0 p-2 overflow-hidden cursor-pointer'>
-        <img
-          className='rounded-full max-w-[40px] min-w-[40px] m-auto'
-          src={avatar}
-          alt={`${name} avatar`}
-        />
-        <p className='truncate text-[12px] font-semibold text-center'>{name}</p>
+        <div className='max-w-[40px] min-w-[40px] m-auto'>
+          <Avatar url={photoURL} name={userName} />
+        </div>
+        <p className='truncate text-[12px] font-semibold text-center'>
+          {userName}
+        </p>
       </a>
     </div>
   );
 };
 
 const MostInteractiveFriends = () => {
+  const [users, setUsers] = useState<AccountItemProps[]>();
+  const [user] = useAuthState(auth);
+
+  useEffect(() => {
+    if (!user) {
+      return;
+    }
+    const q = query(collection(db, 'users'));
+    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
+      const fetchedUsers: any = [];
+      QuerySnapshot.forEach((doc) => {
+        if (doc.data().uid !== user.uid)
+          fetchedUsers.push({ ...doc.data(), id: doc.id });
+      });
+      setUsers(fetchedUsers);
+    });
+    return () => unsubscribe();
+  }, [user]);
   return (
     <ul className='flex gap-2 overflow-auto no-scrollbar'>
-      {mockData.map((item) => (
-        <li key={item.id}>
-          <AccountItem {...item} />
-        </li>
-      ))}
+      {users
+        ? users.map((item) => (
+            <li key={item.uid}>
+              <AccountItem {...item} />
+            </li>
+          ))
+        : null}
     </ul>
   );
 };

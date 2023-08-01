@@ -1,35 +1,25 @@
 import Avatar from 'components/baseUI/avatar/Avatar';
 import Dropdown from 'components/baseUI/dropdown/Dropdown';
 import Icon from 'components/baseUI/icon/Icon';
-import { db } from 'config/firebase';
-import { doc, getDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { getUserById } from 'service/common';
 export interface IUser {
   authProvider: string;
   email: string;
   photoURL: string;
   uid: string;
   userName: string;
+  friends: [];
 }
 
 const HeadMessage = () => {
   const { uid } = useParams();
   const [user, setUser] = useState<IUser>();
 
-  const getUser = async (uid: string) => {
-    try {
-      const docSnap = await getDoc(doc(db, 'users', uid));
-      if (docSnap.exists()) {
-        setUser(docSnap.data() as IUser);
-      }
-    } catch (error) {
-      //
-    }
-  };
   useEffect(() => {
     if (uid) {
-      getUser(uid);
+      getUserById(uid).then((res) => setUser(res));
     }
   }, [uid]);
 

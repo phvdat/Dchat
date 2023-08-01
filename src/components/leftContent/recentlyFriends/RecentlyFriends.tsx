@@ -4,7 +4,7 @@ import { auth, db } from 'config/firebase';
 import { collection, onSnapshot, query } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 interface AccountItemProps {
   uid: string;
@@ -58,7 +58,7 @@ const RecentlyFriends = () => {
 
   return (
     <div>
-      <h2 className='my-7'>Recently</h2>
+      <h2 className='my-7'>Friends</h2>
       <ul className='flex flex-col gap-2'>
         {users
           ? users.map((item) => (

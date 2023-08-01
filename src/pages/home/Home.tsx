@@ -1,4 +1,3 @@
-import { IUser } from 'components/messager/headerMessage/HeadeerMessage';
 import Messager from 'components/messager/Messager';
 import { auth, db } from 'config/firebase';
 import {
@@ -12,13 +11,14 @@ import {
 import { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Outlet, useParams } from 'react-router-dom';
+import { getUserById } from 'service/common';
 
 const HomePage = () => {
   const { uid } = useParams();
   const [user] = useAuthState(auth);
 
   const initConversation = async (uid: string) => {
-    const docRef = await addDoc(collection(db, 'messages'), {});
+    const docRef = await addDoc(collection(db, 'conversation'), {});
     if (user) {
       await updateDoc(doc(db, 'users', user.uid), {
         friends: arrayUnion({
@@ -34,38 +34,23 @@ const HomePage = () => {
       });
     }
   };
-  const getUser = async (uid: string) => {
-    try {
-      const docSnap = await getDoc(doc(db, 'users', uid));
-      if (docSnap.exists()) {
-        return docSnap.data();
-      }
-    } catch (error) {
-      //
-    }
-  };
 
   useEffect(() => {
     if (user && uid) {
-      getUser(user.uid).then((res) => {
+      getUserById(user.uid).then((res) => {
         const friends = res?.friends;
-        if (
-          !friends ||
-          !Object.keys(friends).length ||
-          !friends.find((item: IUser) => {
+        const isFriend =
+          friends &&
+          Object.keys(friends).length &&
+          friends.find((item: any) => {
             return item.uid === uid;
-          })
-        ) {
-          console.log(
-            !friends,
-            !Object.keys(friends).length,
-            !friends.find((item: IUser) => {
-              return item.uid === uid;
-            })
-          );
-
-          initConversation(uid);
-        }
+          });
+        getDoc(doc(db, 'users', uid)).then((docSnap) => {
+          const isValidUser = docSnap.exists();
+          if (!isFriend && isValidUser) {
+            initConversation(uid);
+          }
+        });
       });
     }
   }, [user, uid]);

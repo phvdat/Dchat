@@ -1,66 +1,77 @@
 import classNames from 'classnames';
 import Avatar from 'components/baseUI/avatar/Avatar';
 import { auth, db } from 'config/firebase';
-import {
-  collection,
-  limit,
-  onSnapshot,
-  orderBy,
-  query
-} from 'firebase/firestore';
+import { doc, onSnapshot } from 'firebase/firestore';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useParams } from 'react-router-dom';
+import { getUserById } from 'service/common';
 import { IItemMessageProps } from 'types/MessageType';
 
 const ItemMessage = (props: IItemMessageProps) => {
   const [user] = useAuthState(auth);
-  const { message, uid } = props;
+  const { content, uid, avatar } = props;
   return (
     <div
       className={classNames('flex gap-2', {
         'flex-row-reverse': user?.uid === uid
       })}
     >
-      <Avatar size='md' />
+      <Avatar size='md' url={avatar} />
       <p className='py-1 px-2 rounded-md max-w-[600px] bg-gray-300 dark:bg-gradient-to-r from-indigo-500 to-purple-500'>
-        {message}
+        {content}
       </p>
     </div>
   );
 };
 
 const MessageContent = () => {
+  const { uid } = useParams();
   const [messages, setMessages] = useState<IItemMessageProps[]>();
   const ref = useRef<HTMLUListElement>(null);
+  const [conversationId, setConversationId] = useState<string>('');
+  const [user] = useAuthState(auth);
 
   const scrollDown = () => {
     if (ref.current) {
       ref.current.scrollIntoView({
-        // behavior: 'smooth',
         block: 'start'
       });
     }
   };
 
   useEffect(() => {
-    const q = query(
-      collection(db, 'messages'),
-      orderBy('createdAt', 'desc'),
-      limit(50)
-    );
-    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
-      const fetchedMessages: any = [];
-      QuerySnapshot.forEach((doc) => {
-        fetchedMessages.push({ ...doc.data(), id: doc.id });
+    if (user && uid) {
+      getUserById(user?.uid).then((res) => {
+        if (res) {
+          const friend = res.friends.find(
+            (item: any) => item.uid === uid
+          ) as any;
+          friend && setConversationId(friend?.conversationId);
+        }
       });
-      const sortedMessages = fetchedMessages.sort(
-        (a: IItemMessageProps, b: IItemMessageProps) =>
-          a.createdAt - b.createdAt
-      );
-      setMessages(sortedMessages);
-    });
+    }
+  }, [user, uid]);
+
+  useEffect(() => {
+    if (!conversationId) {
+      return;
+    }
+    const unsubscribe = onSnapshot(
+      doc(db, 'conversation', conversationId),
+      (doc) => {
+        const fetchedMessages = doc.data()?.message;
+        if (fetchedMessages) {
+          const sortedMessages = fetchedMessages.sort(
+            (a: IItemMessageProps, b: IItemMessageProps) =>
+              a.createdAt > b.createdAt
+          );
+          setMessages(sortedMessages);
+        }
+      }
+    );
     return () => unsubscribe();
-  }, []);
+  }, [conversationId]);
 
   useLayoutEffect(() => {
     scrollDown();
