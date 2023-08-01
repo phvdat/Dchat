@@ -1,16 +1,21 @@
 // import Logo from 'src/assets/imgs/avatar.jpg';
+import Avatar from 'components/baseUI/avatar/Avatar';
 import Icon from 'components/baseUI/icon/Icon';
+import { auth } from 'config/firebase';
 import { RoutePath } from 'constants/routes';
 import { getAuth, signOut } from 'firebase/auth';
 import useThemeMode from 'hooks/useThemeMode';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
   const { theme, setTheme } = useThemeMode();
+  const [user] = useAuthState(auth);
   const navigate = useNavigate();
-  const auth = getAuth();
+  const auththenticate = getAuth();
+
   const handleLogout = async () => {
-    signOut(auth)
+    signOut(auththenticate)
       .then(() => {
         navigate(RoutePath.Login);
       })
@@ -25,7 +30,7 @@ const Sidebar = () => {
 		dark:bg-tertiary-dark h-full fixed top-0 left-0'
     >
       <NavLink to='#' className='px-1'>
-        {/* <img src={Logo} alt='Chat' /> */}
+        <Avatar size='md' url={user?.photoURL || ''} />
       </NavLink>
       <div className='flex flex-col gap-1'>
         <NavLink to='/' className='py-2 px-4 rounded-md'>

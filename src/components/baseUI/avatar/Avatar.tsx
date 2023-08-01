@@ -25,7 +25,7 @@ const Avatar = (props: IAvatarProps) => {
   const getSize = (size: AvatarSize) => {
     switch (size) {
       case 'sm':
-        return 20;
+        return 32;
       case 'md':
         return 36;
       case 'lg':
