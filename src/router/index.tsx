@@ -49,6 +49,10 @@ const routesConfig: RouteObject[] = [
               {
                 path: RoutePath.Chat,
                 element: <Contacts />
+              },
+              {
+                path: RoutePath.ChatById,
+                element: <Contacts />
               }
             ]
           }
