@@ -42,14 +42,12 @@ const MessageContent = () => {
 
   useEffect(() => {
     if (user && uid) {
-      getUserById(user?.uid).then((res) => {
-        if (res) {
-          const friend = res.friends.find(
-            (item: any) => item.uid === uid
-          ) as any;
-          friend && setConversationId(friend?.conversationId);
-        }
+      const unsubscribe = onSnapshot(doc(db, 'users', user?.uid), (doc) => {
+        const friends = doc.data()?.friends;
+        const friend = friends.find((item: any) => item.uid === uid) as any;
+        friend && setConversationId(friend?.conversationId);
       });
+      return () => unsubscribe();
     }
   }, [user, uid]);
 
@@ -57,6 +55,7 @@ const MessageContent = () => {
     if (!conversationId) {
       return;
     }
+
     const unsubscribe = onSnapshot(
       doc(db, 'conversation', conversationId),
       (doc) => {

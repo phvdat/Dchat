@@ -3,6 +3,7 @@ import { auth, db } from 'config/firebase';
 import { collection, onSnapshot, query } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link } from 'react-router-dom';
 
 interface AccountItemProps {
   uid: string;
@@ -10,17 +11,23 @@ interface AccountItemProps {
   userName: string;
 }
 const AccountItem = (props: AccountItemProps) => {
-  const { photoURL, userName } = props;
+  const { photoURL, userName, uid } = props;
   return (
-    <div className='max-w-[76px] min-w-[76px] min-h-[50px] rounded-md bg-input-light dark:bg-input-dark relative mt-7'>
-      <a className='absolute min-w-[76px] max-w-[76px] bottom-0 p-2 overflow-hidden cursor-pointer'>
+    <div
+      className='max-w-[76px] min-w-[76px] min-h-[50px] rounded-md 
+			bg-input-light dark:bg-input-dark relative mt-7'
+    >
+      <Link
+        className='absolute min-w-[76px] max-w-[76px] bottom-0 p-2 overflow-hidden cursor-pointer'
+        to={`/chat/${uid}`}
+      >
         <div className='max-w-[40px] min-w-[40px] m-auto'>
           <Avatar url={photoURL} name={userName} />
         </div>
         <p className='truncate text-[12px] font-semibold text-center'>
           {userName}
         </p>
-      </a>
+      </Link>
     </div>
   );
 };
