@@ -10,10 +10,11 @@ import {
   Timestamp,
   updateDoc
 } from 'firebase/firestore';
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
+import { useOnClickOutside } from 'usehooks-ts';
 import { v4 as uuidv4 } from 'uuid';
 import * as yup from 'yup';
 import { IUser } from '../headerMessage/HeadeerMessage';
@@ -25,6 +26,8 @@ const SendMessage = () => {
   const { uid } = useParams();
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [user] = useAuthState(auth);
+  const emojiRef = useRef<HTMLDivElement>(null);
+  useOnClickOutside(emojiRef, () => setShowEmojiPicker(false));
   const schema = useMemo(() => {
     return yup.object<ISendMessage>().shape({
       message: yup.string().trim().required('Have no message')
@@ -70,6 +73,19 @@ const SendMessage = () => {
     setFocus('message');
   };
 
+  // useEffect(() => {
+  //   const handleClickOutside = (event: MouseEvent) => {
+  //     if (
+  //       emojiRef.current &&
+  //       !emojiRef.current.contains(event.target as Node)
+  //     ) {
+  //       setShowEmojiPicker(false);
+  //     }
+  //   };
+  //   document.addEventListener('click', handleClickOutside);
+  //   return document.removeEventListener('click', handleClickOutside);
+  // }, []);
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -92,8 +108,8 @@ const SendMessage = () => {
           <Icon icon='face-smile-solid' />
         </div>
         {showEmojiPicker && (
-          <div className='absolute bottom-5 right-5'>
-            <EmojiPicker onEmojiClick={onEmojiClick} />
+          <div className='absolute bottom-12 right-14' ref={emojiRef}>
+            <EmojiPicker onEmojiClick={onEmojiClick} height={400} width={300} />
           </div>
         )}
       </div>
