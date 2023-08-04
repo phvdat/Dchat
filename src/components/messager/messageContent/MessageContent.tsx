@@ -41,6 +41,7 @@ const MessageContent = () => {
   };
 
   useEffect(() => {
+    setMessages([]);
     if (user && uid) {
       const unsubscribe = onSnapshot(doc(db, 'users', user?.uid), (doc) => {
         const friends = doc.data()?.friends;
