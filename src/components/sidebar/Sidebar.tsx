@@ -19,7 +19,7 @@ const Sidebar = () => {
       .then(() => {
         navigate(RoutePath.Login);
       })
-      .catch((error) => {
+      .catch(() => {
         // An error happened.
       });
   };

@@ -1,5 +1,5 @@
 import Contacts from 'components/leftContent/contacts/Contacts';
-import Messager from 'components/messager/Messager';
+import Messenger from 'components/messager/Messenger';
 import NoMessage from 'components/messager/NoMessage';
 import { auth, db } from 'config/firebase';
 import {
@@ -41,18 +41,17 @@ const HomePage = () => {
     if (user && uid) {
       getUserById(user.uid).then((res) => {
         const friends = res?.friends;
-        const isFriend =
-          friends &&
-          Object.keys(friends).length &&
-          friends.find((item: any) => {
+        if (friends && Object.keys(friends).length) {
+          const isFriend = friends.find((item: any) => {
             return item.uid === uid;
           });
-        getDoc(doc(db, 'users', uid)).then((docSnap) => {
-          const isValidUser = docSnap.exists();
-          if (!isFriend && isValidUser) {
-            initConversation(uid);
-          }
-        });
+          getDoc(doc(db, 'users', uid)).then((docSnap) => {
+            const isValidUser = docSnap.exists();
+            if (!isFriend && isValidUser) {
+              initConversation(uid);
+            }
+          });
+        }
       });
     }
   }, [user, uid]);
@@ -64,7 +63,7 @@ const HomePage = () => {
       </div>
       <div className='flex-grow bg-secondary-light dark:bg-secondary-dark'>
         {uid ? (
-          <Messager />
+          <Messenger />
         ) : (
           <>
             <div className='hidden md:block'>

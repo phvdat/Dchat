@@ -1,4 +1,3 @@
-import Sidebar from 'components/sidebar/Sidebar';
 import { auth } from 'config/firebase';
 import { RoutePath } from 'constants/routes';
 import { useEffect } from 'react';

@@ -46,17 +46,19 @@ const SendMessage = () => {
       await getDoc(doc(db, 'users', user.uid)).then((docSnap) => {
         if (docSnap.exists()) {
           const friends = docSnap.data().friends;
-          const friend = friends.find((item: IUser) => item.uid === uid);
-          updateDoc(doc(db, 'conversation', friend.conversationId), {
-            message: arrayUnion({
-              id: uuidv4(),
-              content: message.trim(),
-              name: auth.currentUser?.displayName,
-              avatar: auth.currentUser?.photoURL,
-              createdAt: Timestamp.now(),
-              uid: auth.currentUser?.uid
-            })
-          });
+          if (Array.isArray(friends)) {
+            const friend = friends?.find((item: IUser) => item.uid === uid);
+            updateDoc(doc(db, 'conversation', friend.conversationId), {
+              message: arrayUnion({
+                id: uuidv4(),
+                content: message.trim(),
+                name: auth.currentUser?.displayName,
+                avatar: auth.currentUser?.photoURL,
+                createdAt: Timestamp.now(),
+                uid: auth.currentUser?.uid
+              })
+            });
+          }
         }
       });
 
@@ -73,25 +75,12 @@ const SendMessage = () => {
     setFocus('message');
   };
 
-  // useEffect(() => {
-  //   const handleClickOutside = (event: MouseEvent) => {
-  //     if (
-  //       emojiRef.current &&
-  //       !emojiRef.current.contains(event.target as Node)
-  //     ) {
-  //       setShowEmojiPicker(false);
-  //     }
-  //   };
-  //   document.addEventListener('click', handleClickOutside);
-  //   return document.removeEventListener('click', handleClickOutside);
-  // }, []);
-
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
       className='flex items-center gap-2 p-2 bg-secondary-light dark:bg-secondary-dark 
 				w-full border-t border-gray-200 dark:border-gray-500
-				md:absolute fixed bottom-0'
+				md:absolute sticky bottom-0'
     >
       <div className='flex-1'>
         <Input

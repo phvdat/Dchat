@@ -5,7 +5,6 @@ import { doc, onSnapshot } from 'firebase/firestore';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom';
-import { getUserById } from 'service/common';
 import { IItemMessageProps } from 'types/MessageType';
 
 const ItemMessage = (props: IItemMessageProps) => {
@@ -45,8 +44,10 @@ const MessageContent = () => {
     if (user && uid) {
       const unsubscribe = onSnapshot(doc(db, 'users', user?.uid), (doc) => {
         const friends = doc.data()?.friends;
-        const friend = friends.find((item: any) => item.uid === uid) as any;
-        friend && setConversationId(friend?.conversationId);
+        if (Array.isArray(friends)) {
+          const friend = friends?.find((item: any) => item.uid === uid) as any;
+          friend && setConversationId(friend?.conversationId);
+        }
       });
       return () => unsubscribe();
     }

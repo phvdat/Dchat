@@ -2,7 +2,7 @@ import HeadMessage from './headerMessage/HeadeerMessage';
 import MessageContent from './messageContent/MessageContent';
 import SendMessage from './sendMessage/SendMessage';
 
-const Messager = () => {
+const Messenger = () => {
   return (
     <div className='h-screen no-scrollbar sticky sm:relative '>
       <HeadMessage />
@@ -12,4 +12,4 @@ const Messager = () => {
   );
 };
 
-export default Messager;
+export default Messenger;
